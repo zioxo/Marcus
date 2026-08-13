@@ -1,0 +1,852 @@
+<!DOCTYPE html>
+<html lang="es" class="dark scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Marcus — Portfolio & CV</title>
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              black: '#0a0a0b',
+              card: 'rgba(18, 18, 20, 0.65)',
+              border: 'rgba(255, 255, 255, 0.12)',
+              glass: 'rgba(255, 255, 255, 0.05)',
+              accent: '#ffffff',
+              muted: '#8e8e93'
+            }
+          },
+          fontFamily: {
+            sans: ['Space Grotesk', 'Inter', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace']
+          },
+          animation: {
+            'pulse-slow': 'pulse 8s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+            'float': 'float 6s ease-in-out infinite'
+          },
+          keyframes: {
+            float: {
+              '0%, 100%': { transform: 'translateY(0px)' },
+              '50%': { transform: 'translateY(-8px)' }
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #0a0a0b;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #2a2a2e;
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #4a4a50;
+    }
+
+    /* Scroll Offset for Sticky Header */
+    section[id] {
+      scroll-margin-top: 8.5rem;
+    }
+
+    .glass-panel {
+      background: rgba(18, 18, 22, 0.65);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    /* Animated Liquid Lava & Code Pixels Canvas Background */
+    #liquid-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: 0;
+      pointer-events: none;
+      filter: blur(65px) contrast(150%);
+      opacity: 0.75;
+    }
+
+    #particles-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: 1;
+      pointer-events: none;
+      opacity: 0.85;
+    }
+
+    .bg-grid-pattern {
+      background-size: 32px 32px;
+      background-image: 
+        linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    }
+  </style>
+</head>
+
+<body class="bg-[#0a0a0b] text-neutral-200 font-sans min-h-screen relative overflow-x-hidden transition-colors duration-500 selection:bg-white selection:text-black">
+
+  <!-- Animated Liquid & Pixel Canvas Background -->
+  <!-- Animated Liquid Canvas Background -->
+  <canvas id="liquid-canvas"></canvas>
+  <div class="fixed inset-0 bg-grid-pattern pointer-events-none z-0"></div>
+
+  <!-- Geometric Frame Decorators -->
+  <div class="fixed inset-4 sm:inset-6 border border-white/10 pointer-events-none rounded-3xl z-10 hidden md:block">
+    <div class="absolute top-0 left-0 w-8 h-8 border-t-2 border-l-2 border-white/40 -mt-[1px] -ml-[1px] rounded-tl-xl"></div>
+    <div class="absolute top-0 right-0 w-8 h-8 border-t-2 border-r-2 border-white/40 -mt-[1px] -mr-[1px] rounded-tr-xl"></div>
+    <div class="absolute bottom-0 left-0 w-8 h-8 border-b-2 border-l-2 border-white/40 -mb-[1px] -ml-[1px] rounded-bl-xl"></div>
+    <div class="absolute bottom-0 right-0 w-8 h-8 border-b-2 border-r-2 border-white/40 -mb-[1px] -mr-[1px] rounded-br-xl"></div>
+    
+    <div class="absolute right-3 top-1/2 -translate-y-1/2 rotate-90 origin-right text-[10px] font-mono tracking-[0.3em] text-neutral-500 uppercase whitespace-nowrap">
+      © MARCUS / ALL RIGHTS RESERVED 2026
+    </div>
+  </div>
+
+  <div class="relative z-20 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-8">
+    
+    <!-- TOP STICKY HEADER & NAV BARS -->
+    <header class="sticky top-4 z-40 space-y-3">
+      <!-- Main Brand & Action Header -->
+      <div class="glass-panel rounded-2xl px-5 py-3 flex items-center justify-between shadow-2xl border border-white/15 backdrop-blur-xl">
+        <!-- Logo Badge -->
+        <a href="#about-sec" class="flex items-center gap-3 group">
+          <div class="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center border border-white/20 group-hover:bg-white group-hover:text-black transition-all">
+            <span class="font-mono font-bold text-lg tracking-tighter">
+              /Z
+            </span>
+          </div>
+          <div>
+            <h1 class="text-[10px] font-mono tracking-widest text-neutral-400 uppercase">Interactive CV</h1>
+            <p class="text-xs font-bold tracking-tight flex items-center gap-1.5">
+              <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+              Marcus Zeytox
+            </p>
+          </div>
+        </a>
+
+        <!-- Right Action Controls -->
+        <div class="flex items-center gap-2">
+          <button onclick="downloadCV()" class="px-3 py-1.5 rounded-xl bg-white/10 hover:bg-white hover:text-black border border-white/20 text-xs font-mono transition-all hidden sm:flex items-center gap-2">
+            <span>CV PDF</span>
+            <i class="fa-solid fa-arrow-down-long text-[10px]"></i>
+          </button>
+
+          <button onclick="openContactModal()" class="px-3.5 py-2 rounded-xl bg-white text-black font-semibold text-xs uppercase tracking-wider hover:bg-neutral-200 transition-all shadow-md flex items-center gap-1.5">
+            <i class="fa-regular fa-paper-plane text-xs"></i>
+            <span>Contacto</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Dedicated Navigation Menu Bar -->
+      <nav class="glass-panel rounded-2xl p-1.5 flex items-center justify-center gap-1 sm:gap-3 font-mono text-xs shadow-xl border border-white/15 overflow-x-auto backdrop-blur-xl">
+        <a href="#about-sec" class="px-4 py-2 rounded-xl text-neutral-300 hover:text-white hover:bg-white/10 transition-all uppercase tracking-wider text-[11px] font-medium whitespace-nowrap">Sobre mí</a>
+        <a href="#experience-sec" class="px-4 py-2 rounded-xl text-neutral-300 hover:text-white hover:bg-white/10 transition-all uppercase tracking-wider text-[11px] font-medium whitespace-nowrap">Experiencia</a>
+        <a href="#portfolio-sec" class="px-4 py-2 rounded-xl text-neutral-300 hover:text-white hover:bg-white/10 transition-all uppercase tracking-wider text-[11px] font-medium whitespace-nowrap">Portafolio</a>
+        <a href="#apps-sec" class="px-4 py-2 rounded-xl text-neutral-300 hover:text-white hover:bg-white/10 transition-all uppercase tracking-wider text-[11px] font-medium whitespace-nowrap">Apps</a>
+        <a href="#skills-sec" class="px-4 py-2 rounded-xl text-neutral-300 hover:text-white hover:bg-white/10 transition-all uppercase tracking-wider text-[11px] font-medium whitespace-nowrap">Skills</a>
+        <a href="#brands-sec" class="px-4 py-2 rounded-xl text-neutral-300 hover:text-white hover:bg-white/10 transition-all uppercase tracking-wider text-[11px] font-medium whitespace-nowrap">Marcas</a>
+      </nav>
+    </header>
+
+    <main class="space-y-10">
+      
+      <!-- SECTION 1: SOBRE MÍ / HERO PROFILE CARD -->
+      <section id="about-sec" class="glass-panel rounded-[2rem] p-6 sm:p-10 relative overflow-hidden shadow-2xl border border-white/15">
+        <div class="absolute -right-20 -top-20 w-80 h-80 bg-white/10 rounded-full blur-3xl pointer-events-none"></div>
+
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-6 border-b border-white/10">
+          <div>
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 text-white font-mono text-xs mb-3 border border-white/20">
+              <span>UI/UX</span> • <span>BRANDING</span> • <span>WEB DESIGN</span>
+            </div>
+            <h2 class="text-5xl sm:text-7xl font-bold tracking-tight text-white flex items-center gap-1">
+              <span class="text-neutral-500 font-light text-4xl sm:text-6xl">/</span>Marcus
+            </h2>
+          </div>
+
+          <!-- Quick Stats -->
+          <div class="flex gap-6 font-mono text-xs text-neutral-400">
+            <div class="border-l-2 border-white/30 pl-3">
+              <span class="block text-2xl font-bold text-white font-sans">6+</span>
+              Años de Experiencia
+            </div>
+            <div class="border-l-2 border-white/30 pl-3">
+              <span class="block text-2xl font-bold text-white font-sans">40+</span>
+              Proyectos Exitosos
+            </div>
+          </div>
+        </div>
+
+        <!-- Description -->
+        <div class="pt-6 space-y-6">
+          <p class="text-neutral-300 text-sm sm:text-base leading-relaxed font-sans max-w-3xl">
+            Cuento con <strong>6 años de experiencia laboral</strong> en las áreas de diseño gráfico, diseño web, diseño multimedia, con especialización en edición, post-producción y animación de videos. He dirigido y colaborado en el desarrollo de marcas, campañas, licitaciones, branding, brainstorming, diseño e identidad visual.
+          </p>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4 pt-2">
+            <div class="p-4 rounded-2xl bg-white/5 border border-white/10 space-y-1">
+              <i class="fa-solid fa-eye text-lg text-white mb-1"></i>
+              <h4 class="font-bold text-white text-xs">Dirección de Arte</h4>
+              <p class="text-[11px] text-neutral-400 leading-relaxed">Composición monocromática, tipografía pulida y balances visuales editoriales.</p>
+            </div>
+
+            <div class="p-4 rounded-2xl bg-white/5 border border-white/10 space-y-1">
+              <i class="fa-solid fa-bolt text-lg text-white mb-1"></i>
+              <h4 class="font-bold text-white text-xs">Ejecución Ágil</h4>
+              <p class="text-[11px] text-neutral-400 leading-relaxed">Liderazgo en licitaciones de alta exigencia, brainstorming y entregas a tiempo.</p>
+            </div>
+
+            <div class="p-4 rounded-2xl bg-white/5 border border-white/10 space-y-1">
+              <i class="fa-solid fa-graduation-cap text-lg text-white mb-1"></i>
+              <h4 class="font-bold text-white text-xs">Docencia & Mentoría</h4>
+              <p class="text-[11px] text-neutral-400 leading-relaxed">Experiencia instruyendo en la Asociación Peruana de Diseño en UI y diseño gráfico.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 2: EXPERIENCIA LABORAL -->
+      <section id="experience-sec" class="glass-panel rounded-3xl p-6 sm:p-8 space-y-6 pt-6">
+        <div class="flex items-center justify-between pb-4 border-b border-white/10">
+          <h3 class="text-lg font-bold text-white flex items-center gap-2">
+            <i class="fa-solid fa-briefcase text-xs text-neutral-400"></i>
+            Trayectoria Laboral
+          </h3>
+          <span class="text-xs font-mono text-neutral-400">2019 — PRESENTE</span>
+        </div>
+
+        <div class="space-y-4">
+          <!-- Item 1: 2022 - 2026 -->
+          <div class="group p-5 rounded-2xl bg-white/[0.03] hover:bg-white/[0.07] border border-white/10 transition-all flex flex-col md:flex-row md:items-center justify-between gap-4">
+            <div class="space-y-1">
+              <span class="text-xs font-mono text-neutral-400 font-semibold tracking-wider">2022 — 2026</span>
+              <h4 class="text-base font-bold text-white group-hover:text-neutral-200 transition-colors">Diseñador Gráfico Creativo Sr</h4>
+              <p class="text-xs text-neutral-400 font-mono">VALOR — Socios de marcas</p>
+              <p class="text-xs text-neutral-300 mt-2 max-w-xl">Liderazgo de equipo creativo, conceptualización de identidad visual, campañas 360°, dirección de arte para clientes corporativos internacionales.</p>
+            </div>
+            <div class="flex items-center justify-between md:flex-col md:items-end gap-2 border-t md:border-t-0 border-white/10 pt-3 md:pt-0">
+              <div class="px-4 py-2 rounded-xl bg-white text-black font-extrabold text-sm font-serif tracking-widest uppercase">
+                VALOR
+              </div>
+              <span class="text-[10px] font-mono text-neutral-400">Full-time</span>
+            </div>
+          </div>
+
+          <!-- Item 2: 2020 - 2021 -->
+          <div class="p-5 rounded-2xl bg-white/[0.03] hover:bg-white/[0.07] border border-white/10 transition-all space-y-4">
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-2 pb-2 border-b border-white/5">
+              <span class="text-xs font-mono text-neutral-400 font-semibold">2020 — 2021</span>
+              <span class="text-[10px] font-mono px-2.5 py-1 rounded-full bg-white/10 text-neutral-300">Multicliente / Agencia</span>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div class="p-3.5 rounded-xl bg-black/40 border border-white/5 space-y-1">
+                <div class="flex justify-between items-start">
+                  <h5 class="text-sm font-bold text-white">Digital Planner</h5>
+                  <span class="font-bold font-mono text-xs text-neutral-300">Conexo</span>
+                </div>
+                <p class="text-xs text-neutral-400">Conexo - Contact Center</p>
+              </div>
+
+              <div class="p-3.5 rounded-xl bg-black/40 border border-white/5 space-y-1">
+                <div class="flex justify-between items-start">
+                  <h5 class="text-sm font-bold text-white">Instructor de Diseño</h5>
+                  <span class="font-bold font-mono text-xs text-neutral-300">APD</span>
+                </div>
+                <p class="text-xs text-neutral-400">Asociación Peruana de Diseño</p>
+              </div>
+
+              <div class="p-3.5 rounded-xl bg-black/40 border border-white/5 space-y-1">
+                <div class="flex justify-between items-start">
+                  <h5 class="text-sm font-bold text-white">Freelance Sr Designer</h5>
+                  <span class="font-bold font-mono text-xs text-neutral-300">ariadna</span>
+                </div>
+                <p class="text-xs text-neutral-400">Ariadna Communications Group</p>
+              </div>
+
+              <div class="p-3.5 rounded-xl bg-black/40 border border-white/5 space-y-1">
+                <div class="flex justify-between items-start">
+                  <h5 class="text-sm font-bold text-white">Freelance Sr Designer</h5>
+                  <span class="font-bold font-mono text-xs text-neutral-300">McCann</span>
+                </div>
+                <p class="text-xs text-neutral-400">McCann Worldgroup</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Item 3: 2019 - 2020 -->
+          <div class="group p-5 rounded-2xl bg-white/[0.03] hover:bg-white/[0.07] border border-white/10 transition-all flex flex-col md:flex-row md:items-center justify-between gap-4">
+            <div class="space-y-1">
+              <span class="text-xs font-mono text-neutral-400 font-semibold tracking-wider">2019 — 2020</span>
+              <h4 class="text-base font-bold text-white">Diseñador Gráfico Mid</h4>
+              <p class="text-xs text-neutral-400 font-mono">Comunica +A</p>
+              <p class="text-xs text-neutral-300 mt-1">Creación de piezas gráficas para redes sociales, retoque digital de alta precisión y material publicitario BTL.</p>
+            </div>
+            <div class="flex items-center justify-between md:flex-col md:items-end gap-2">
+              <div class="px-4 py-2 rounded-xl bg-white text-black font-extrabold text-sm font-mono tracking-tighter">
+                DC
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 3: PORTAFOLIO -->
+      <section id="portfolio-sec" class="glass-panel rounded-3xl p-6 sm:p-8 space-y-6 pt-6">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-white/10">
+          <div>
+            <h3 class="text-lg font-bold text-white flex items-center gap-2">
+              <i class="fa-solid fa-layer-group text-xs text-neutral-400"></i>
+              Portafolio de Trabajos
+            </h3>
+            <p class="text-xs text-neutral-400 font-mono mt-0.5">Selección de proyectos de Branding, Web y Multimedia</p>
+          </div>
+
+          <!-- Category Filters -->
+          <div class="flex flex-wrap gap-2">
+            <button onclick="filterPortfolio('all')" class="port-filter-btn px-3 py-1 rounded-full text-xs font-mono bg-white text-black active" data-filter="all">Todos</button>
+            <button onclick="filterPortfolio('branding')" class="port-filter-btn px-3 py-1 rounded-full text-xs font-mono bg-white/10 text-neutral-300 hover:bg-white/20" data-filter="branding">Branding</button>
+            <button onclick="filterPortfolio('web')" class="port-filter-btn px-3 py-1 rounded-full text-xs font-mono bg-white/10 text-neutral-300 hover:bg-white/20" data-filter="web">Web UI</button>
+            <button onclick="filterPortfolio('motion')" class="port-filter-btn px-3 py-1 rounded-full text-xs font-mono bg-white/10 text-neutral-300 hover:bg-white/20" data-filter="motion">Motion</button>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6" id="portfolio-grid">
+          <!-- Project 1 -->
+          <div class="port-card group rounded-2xl glass-panel p-4 overflow-hidden border border-white/10 hover:border-white/40 transition-all cursor-pointer" data-category="branding" onclick="openProjectModal('Valor Rebrand 2025', 'Branding & Identity', 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80', 'Rediseño completo de identidad corporativa y guías de marca para agencias asociadas en Latinoamérica.')">
+            <div class="relative h-48 rounded-xl overflow-hidden mb-4 bg-neutral-900">
+              <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80" alt="Valor Rebrand" class="w-full h-full object-cover grayscale contrast-125 group-hover:scale-105 transition-transform duration-500">
+              <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                <span class="px-4 py-2 rounded-full bg-white text-black text-xs font-bold font-mono">Ver Caso de Estudio</span>
+              </div>
+              <span class="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-black/60 backdrop-blur-md text-[10px] font-mono text-white border border-white/20">BRANDING</span>
+            </div>
+            <h4 class="text-base font-bold text-white group-hover:text-neutral-200">Valor Identity System</h4>
+            <p class="text-xs text-neutral-400 font-mono mt-1">Identidad Visual, Manual de Marca & Tipografía</p>
+          </div>
+
+          <!-- Project 2 -->
+          <div class="port-card group rounded-2xl glass-panel p-4 overflow-hidden border border-white/10 hover:border-white/40 transition-all cursor-pointer" data-category="web" onclick="openProjectModal('Zeytox Web Design', 'UI/UX Interactive Platform', 'https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=800&q=80', 'Desarrollo de plataforma web minimalista con efectos de vidrio glaseado, animaciones 60fps y layout brutalista.')">
+            <div class="relative h-48 rounded-xl overflow-hidden mb-4 bg-neutral-900">
+              <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=800&q=80" alt="Zeytox Web Design" class="w-full h-full object-cover grayscale contrast-125 group-hover:scale-105 transition-transform duration-500">
+              <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                <span class="px-4 py-2 rounded-full bg-white text-black text-xs font-bold font-mono">Ver Caso de Estudio</span>
+              </div>
+              <span class="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-black/60 backdrop-blur-md text-[10px] font-mono text-white border border-white/20">WEB UI</span>
+            </div>
+            <h4 class="text-base font-bold text-white group-hover:text-neutral-200">Platform Dark UI</h4>
+            <p class="text-xs text-neutral-400 font-mono mt-1">Prototipado Figma, Design Systems & Glassmorphism</p>
+          </div>
+
+          <!-- Project 3 -->
+          <div class="port-card group rounded-2xl glass-panel p-4 overflow-hidden border border-white/10 hover:border-white/40 transition-all cursor-pointer" data-category="motion" onclick="openProjectModal('McCann Commercial Reel', 'Motion & Post-Production', 'https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?auto=format&fit=crop&w=800&q=80', 'Post-producción de video publicitario, animación 3D de tipografías y efectos visuales para lanzamientos de productos.')">
+            <div class="relative h-48 rounded-xl overflow-hidden mb-4 bg-neutral-900">
+              <img src="https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?auto=format&fit=crop&w=800&q=80" alt="McCann Reel" class="w-full h-full object-cover grayscale contrast-125 group-hover:scale-105 transition-transform duration-500">
+              <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                <span class="px-4 py-2 rounded-full bg-white text-black text-xs font-bold font-mono">Ver Reel</span>
+              </div>
+              <span class="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-black/60 backdrop-blur-md text-[10px] font-mono text-white border border-white/20">MOTION</span>
+            </div>
+            <h4 class="text-base font-bold text-white group-hover:text-neutral-200">Campaña Audiovisual McCann</h4>
+            <p class="text-xs text-neutral-400 font-mono mt-1">Edición Premiere Pro & After Effects VFX</p>
+          </div>
+
+          <!-- Project 4 -->
+          <div class="port-card group rounded-2xl glass-panel p-4 overflow-hidden border border-white/10 hover:border-white/40 transition-all cursor-pointer" data-category="branding" onclick="openProjectModal('Ariadna Digital Kit', 'Digital Media Kits', 'https://images.unsplash.com/photo-1600132806370-bf17e65e942f?auto=format&fit=crop&w=800&q=80', 'Diseño de kits publicitarios para medios digitales, piezas sociales animadas y dirección visual para licitaciones.')">
+            <div class="relative h-48 rounded-xl overflow-hidden mb-4 bg-neutral-900">
+              <img src="https://images.unsplash.com/photo-1600132806370-bf17e65e942f?auto=format&fit=crop&w=800&q=80" alt="Ariadna Kit" class="w-full h-full object-cover grayscale contrast-125 group-hover:scale-105 transition-transform duration-500">
+              <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                <span class="px-4 py-2 rounded-full bg-white text-black text-xs font-bold font-mono">Ver Detalle</span>
+              </div>
+              <span class="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-black/60 backdrop-blur-md text-[10px] font-mono text-white border border-white/20">BRANDING</span>
+            </div>
+            <h4 class="text-base font-bold text-white group-hover:text-neutral-200">Campaign Pitch System</h4>
+            <p class="text-xs text-neutral-400 font-mono mt-1">Diseño de Key Visuals & Editorial Digital</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION: APPS CREADAS -->
+      <section id="apps-sec" class="glass-panel rounded-3xl p-6 sm:p-8 space-y-6 pt-6">
+        <div class="flex items-center justify-between pb-4 border-b border-white/10">
+          <div>
+            <h3 class="text-lg font-bold text-white flex items-center gap-2">
+              <i class="fa-regular fa-face-smile text-sm text-neutral-300"></i>
+              Apps creadas
+            </h3>
+            <p class="text-xs text-neutral-400 font-mono mt-0.5">Desarrollo de apps</p>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <!-- App Item 1 -->
+          <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="group p-5 rounded-2xl bg-black/50 hover:bg-white/10 border border-white/10 hover:border-white/30 transition-all flex flex-col sm:flex-row items-start sm:items-center gap-5 cursor-pointer">
+            <div class="w-24 h-24 sm:w-28 sm:h-28 rounded-3xl bg-white flex-shrink-0 flex items-center justify-center text-black p-4 group-hover:scale-105 transition-transform shadow-lg">
+              <svg class="w-16 h-16" viewBox="0 0 100 100" fill="currentColor">
+                <path d="M20,20 L40,20 L50,40 L60,20 L80,20 L60,50 L80,80 L60,80 L50,60 L40,80 L20,80 L40,50 Z" />
+              </svg>
+            </div>
+            <div class="space-y-2 flex-1">
+              <div class="inline-block px-4 py-1 rounded-full bg-white text-black font-black text-xs uppercase tracking-wider">
+                ZEYTOX LAB
+              </div>
+              <p class="text-xs text-neutral-300 leading-relaxed font-sans">
+                Aplicación web interactiva para pruebas de componentes UI, simulación de layouts en tiempo real y exportación de tokens en Glassmorphism.
+              </p>
+              <div class="text-[11px] font-mono text-neutral-400 pt-1 flex items-center justify-between">
+                <span>Fecha creación: 13 de Ago. 2026</span>
+                <i class="fa-solid fa-arrow-up-right-from-square text-[10px] opacity-0 group-hover:opacity-100 transition-opacity"></i>
+              </div>
+            </div>
+          </a>
+
+          <!-- App Item 2 -->
+          <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="group p-5 rounded-2xl bg-black/50 hover:bg-white/10 border border-white/10 hover:border-white/30 transition-all flex flex-col sm:flex-row items-start sm:items-center gap-5 cursor-pointer">
+            <div class="w-24 h-24 sm:w-28 sm:h-28 rounded-3xl bg-white flex-shrink-0 flex items-center justify-center text-black p-4 group-hover:scale-105 transition-transform shadow-lg">
+              <svg class="w-16 h-16" viewBox="0 0 100 100" fill="currentColor">
+                <path d="M20,20 L40,20 L50,40 L60,20 L80,20 L60,50 L80,80 L60,80 L50,60 L40,80 L20,80 L40,50 Z" />
+              </svg>
+            </div>
+            <div class="space-y-2 flex-1">
+              <div class="inline-block px-4 py-1 rounded-full bg-white text-black font-black text-xs uppercase tracking-wider">
+                BRAND SUITE
+              </div>
+              <p class="text-xs text-neutral-300 leading-relaxed font-sans">
+                Plataforma de gestión de manuales de marca e identidades corporativas con previsualización responsive de activos multimedia.
+              </p>
+              <div class="text-[11px] font-mono text-neutral-400 pt-1 flex items-center justify-between">
+                <span>Fecha creación: 13 de Ago. 2026</span>
+                <i class="fa-solid fa-arrow-up-right-from-square text-[10px] opacity-0 group-hover:opacity-100 transition-opacity"></i>
+              </div>
+            </div>
+          </a>
+        </div>
+      </section>
+
+      <!-- SECTION 4: SKILLS & TOOLS -->
+      <section id="skills-sec" class="glass-panel rounded-3xl p-6 sm:p-8 space-y-6 pt-6">
+        <div class="flex items-center justify-between pb-4 border-b border-white/10">
+          <h3 class="text-lg font-bold text-white flex items-center gap-2">
+            <i class="fa-solid fa-code text-xs text-neutral-400"></i>
+            Habilidades y Software
+          </h3>
+          <span class="text-xs font-mono text-neutral-400">HERRAMIENTAS CLAVE</span>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="space-y-4">
+            <h4 class="text-xs font-mono text-neutral-400 uppercase tracking-widest">// DOMINIO TÉCNICO</h4>
+            <div class="space-y-3">
+              <div>
+                <div class="flex justify-between text-xs font-mono mb-1">
+                  <span class="text-white">Dirección de Arte & Branding</span>
+                  <span class="text-neutral-400">95%</span>
+                </div>
+                <div class="w-full h-1.5 bg-white/10 rounded-full overflow-hidden">
+                  <div class="h-full bg-white rounded-full" style="width: 95%"></div>
+                </div>
+              </div>
+
+              <div>
+                <div class="flex justify-between text-xs font-mono mb-1">
+                  <span class="text-white">Inteligencia Artificial & IA Generativa</span>
+                  <span class="text-neutral-400">92%</span>
+                </div>
+                <div class="w-full h-1.5 bg-white/10 rounded-full overflow-hidden">
+                  <div class="h-full bg-white rounded-full" style="width: 92%"></div>
+                </div>
+              </div>
+
+              <div>
+                <div class="flex justify-between text-xs font-mono mb-1">
+                  <span class="text-white">Diseño Web UI/UX & Prototipeo</span>
+                  <span class="text-neutral-400">90%</span>
+                </div>
+                <div class="w-full h-1.5 bg-white/10 rounded-full overflow-hidden">
+                  <div class="h-full bg-white rounded-full" style="width: 90%"></div>
+                </div>
+              </div>
+
+              <div>
+                <div class="flex justify-between text-xs font-mono mb-1">
+                  <span class="text-white">Edición de Video & Motion Graphics</span>
+                  <span class="text-neutral-400">88%</span>
+                </div>
+                <div class="w-full h-1.5 bg-white/10 rounded-full overflow-hidden">
+                  <div class="h-full bg-white rounded-full" style="width: 88%"></div>
+                </div>
+              </div>
+
+              <div>
+                <div class="flex justify-between text-xs font-mono mb-1">
+                  <span class="text-white">Estrategia Digital & Campaign Ads</span>
+                  <span class="text-neutral-400">85%</span>
+                </div>
+                <div class="w-full h-1.5 bg-white/10 rounded-full overflow-hidden">
+                  <div class="h-full bg-white rounded-full" style="width: 85%"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="space-y-4">
+            <h4 class="text-xs font-mono text-neutral-400 uppercase tracking-widest">// SOFTWARE STACK</h4>
+            <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
+              <div class="p-3 rounded-2xl bg-white/5 border border-white/10 text-center hover:border-white transition-all">
+                <i class="fa-brands fa-figma text-xl text-white mb-2"></i>
+                <p class="text-xs font-mono text-white">Figma</p>
+              </div>
+              <div class="p-3 rounded-2xl bg-white/5 border border-white/10 text-center hover:border-white transition-all">
+                <i class="fa-solid fa-paintbrush text-xl text-white mb-2"></i>
+                <p class="text-xs font-mono text-white">Photoshop</p>
+              </div>
+              <div class="p-3 rounded-2xl bg-white/5 border border-white/10 text-center hover:border-white transition-all">
+                <i class="fa-solid fa-bezier-curve text-xl text-white mb-2"></i>
+                <p class="text-xs font-mono text-white">Illustrator</p>
+              </div>
+              <div class="p-3 rounded-2xl bg-white/5 border border-white/10 text-center hover:border-white transition-all">
+                <i class="fa-solid fa-film text-xl text-white mb-2"></i>
+                <p class="text-xs font-mono text-white">After Effects</p>
+              </div>
+              <div class="p-3 rounded-2xl bg-white/5 border border-white/10 text-center hover:border-white transition-all">
+                <i class="fa-solid fa-video text-xl text-white mb-2"></i>
+                <p class="text-xs font-mono text-white">Premiere Pro</p>
+              </div>
+              <div class="p-3 rounded-2xl bg-white/5 border border-white/10 text-center hover:border-white transition-all">
+                <i class="fa-solid fa-wand-magic-sparkles text-xl text-white mb-2"></i>
+                <p class="text-xs font-mono text-white">Herramientas IA</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 5: MARCAS -->
+      <section id="brands-sec" class="glass-panel rounded-3xl p-6 sm:p-8 space-y-6 pt-6">
+        <div class="flex items-center justify-between pb-4 border-b border-white/10">
+          <h3 class="text-lg font-bold text-white flex items-center gap-2">
+            <i class="fa-solid fa-building text-xs text-neutral-400"></i>
+            Marcas con las que he Colaborado
+          </h3>
+          <span class="text-xs font-mono text-neutral-400">CLIENTES & AGENCIAS</span>
+        </div>
+
+        <div class="grid grid-cols-2 sm:grid-cols-3 gap-4">
+          <div class="p-6 rounded-2xl bg-white/5 border border-white/10 flex flex-col items-center justify-center text-center group hover:border-white transition-all">
+            <span class="text-2xl font-serif font-black tracking-widest text-white mb-1">VALOR</span>
+            <span class="text-[10px] font-mono text-neutral-400">Socios de marcas</span>
+          </div>
+
+          <div class="p-6 rounded-2xl bg-white/5 border border-white/10 flex flex-col items-center justify-center text-center group hover:border-white transition-all">
+            <span class="text-xl font-mono font-bold tracking-tighter text-white mb-1">Conexo</span>
+            <span class="text-[10px] font-mono text-neutral-400">Contact Center</span>
+          </div>
+
+          <div class="p-6 rounded-2xl bg-white/5 border border-white/10 flex flex-col items-center justify-center text-center group hover:border-white transition-all">
+            <span class="text-xl font-bold tracking-widest text-white mb-1">McCANN</span>
+            <span class="text-[10px] font-mono text-neutral-400">Worldgroup</span>
+          </div>
+
+          <div class="p-6 rounded-2xl bg-white/5 border border-white/10 flex flex-col items-center justify-center text-center group hover:border-white transition-all">
+            <span class="text-xl font-sans tracking-tight font-extrabold text-white mb-1">ariadna</span>
+            <span class="text-[10px] font-mono text-neutral-400">Communication Group</span>
+          </div>
+
+          <div class="p-6 rounded-2xl bg-white/5 border border-white/10 flex flex-col items-center justify-center text-center group hover:border-white transition-all">
+            <span class="text-xl font-serif italic font-bold text-white mb-1">Mood</span>
+            <span class="text-[10px] font-mono text-neutral-400">Agencia Creativa</span>
+          </div>
+
+          <div class="p-6 rounded-2xl bg-white/5 border border-white/10 flex flex-col items-center justify-center text-center group hover:border-white transition-all">
+            <span class="text-xl font-mono font-black text-white mb-1">COMUNICA +A</span>
+            <span class="text-[10px] font-mono text-neutral-400">BTL & Branding</span>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="pt-8 pb-4 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4 font-mono text-xs text-neutral-400">
+      <div class="flex items-center gap-4">
+        <a href="mailto:hi@zeytox.com" class="hover:text-white transition-colors flex items-center gap-2">
+          <i class="fa-regular fa-envelope"></i>
+          hi@zeytox.com
+        </a>
+        <span class="text-neutral-600">/</span>
+        <a href="tel:+51902574571" class="hover:text-white transition-colors flex items-center gap-2">
+          <i class="fa-solid fa-phone"></i>
+          +51 902 574 571
+        </a>
+      </div>
+
+      <div class="flex items-center gap-3">
+        <span class="text-[10px] tracking-widest uppercase text-neutral-500">ZEYTOX DESIGN SYSTEM v2.6</span>
+        <div class="w-6 h-6 rounded-full glass-panel flex items-center justify-center text-white">
+          <i class="fa-solid fa-cat text-[10px]"></i>
+        </div>
+      </div>
+    </footer>
+
+  </div>
+
+  <!-- MODAL: PROJECT DETAIL -->
+  <div id="projectModal" class="fixed inset-0 bg-black/80 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
+    <div class="glass-panel border border-white/20 rounded-3xl max-w-2xl w-full p-6 sm:p-8 relative space-y-4 max-h-[90vh] overflow-y-auto">
+      <button onclick="closeProjectModal()" class="absolute top-6 right-6 w-8 h-8 rounded-full bg-white/10 hover:bg-white text-white hover:text-black transition-all flex items-center justify-center">
+        <i class="fa-solid fa-xmark text-sm"></i>
+      </button>
+
+      <span id="modalCategory" class="px-3 py-1 rounded-full bg-white/10 text-white font-mono text-xs border border-white/20 inline-block">Categoría</span>
+      <h3 id="modalTitle" class="text-2xl font-bold text-white">Título del Proyecto</h3>
+      
+      <div class="rounded-2xl overflow-hidden bg-neutral-900 border border-white/10 h-64">
+        <img id="modalImage" src="" alt="Project Preview" class="w-full h-full object-cover grayscale contrast-125">
+      </div>
+
+      <p id="modalDesc" class="text-sm text-neutral-300 leading-relaxed font-sans">
+        Descripción del proyecto...
+      </p>
+
+      <div class="pt-4 border-t border-white/10 flex justify-end gap-3">
+        <button onclick="closeProjectModal()" class="px-5 py-2 rounded-xl glass-panel text-xs font-mono text-white hover:bg-white/10">Cerrar</button>
+        <button onclick="showToast('Demostración interactiva: Enlace al proyecto.')" class="px-5 py-2 rounded-xl bg-white text-black text-xs font-mono font-bold hover:bg-neutral-200">Ver Proyecto</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: DIRECT CONTACT -->
+  <div id="contactModal" class="fixed inset-0 bg-black/80 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
+    <div class="glass-panel border border-white/20 rounded-3xl max-w-lg w-full p-6 sm:p-8 relative space-y-5">
+      <button onclick="closeContactModal()" class="absolute top-6 right-6 w-8 h-8 rounded-full bg-white/10 hover:bg-white text-white hover:text-black transition-all flex items-center justify-center">
+        <i class="fa-solid fa-xmark text-sm"></i>
+      </button>
+
+      <div>
+        <h3 class="text-xl font-bold text-white flex items-center gap-2">
+          <i class="fa-regular fa-paper-plane text-xs"></i>
+          Iniciar Conversación
+        </h3>
+        <p class="text-xs text-neutral-400 font-mono mt-1">Escríbeme para proyectos directos o consultoría</p>
+      </div>
+
+      <form onsubmit="handleContactSubmit(event)" class="space-y-4">
+        <div>
+          <label class="block text-xs font-mono text-neutral-400 mb-1">Nombre Completo</label>
+          <input type="text" required placeholder="Tu Nombre" class="w-full px-4 py-2.5 rounded-xl bg-white/5 border border-white/15 text-white text-sm focus:outline-none focus:border-white transition-all">
+        </div>
+
+        <div>
+          <label class="block text-xs font-mono text-neutral-400 mb-1">Correo Electrónico</label>
+          <input type="email" required placeholder="correo@ejemplo.com" class="w-full px-4 py-2.5 rounded-xl bg-white/5 border border-white/15 text-white text-sm focus:outline-none focus:border-white transition-all">
+        </div>
+
+        <div>
+          <label class="block text-xs font-mono text-neutral-400 mb-1">Mensaje / Breve Resumen</label>
+          <textarea rows="3" required placeholder="Hola Marcus, me gustaría cotizar un proyecto..." class="w-full px-4 py-2.5 rounded-xl bg-white/5 border border-white/15 text-white text-sm focus:outline-none focus:border-white transition-all"></textarea>
+        </div>
+
+        <button type="submit" class="w-full py-3 rounded-xl bg-white text-black font-bold text-xs uppercase tracking-wider hover:bg-neutral-200 transition-all shadow-lg">
+          Enviar Mensaje
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    // Pure White Liquid Lava Lamp Animated Background
+    (function initAnimatedBg() {
+      const liquidCanvas = document.getElementById('liquid-canvas');
+      if (!liquidCanvas) return;
+
+      const lCtx = liquidCanvas.getContext('2d');
+      let width, height;
+
+      // Mouse tracking for fluid interaction
+      const mouse = { x: -1000, y: -1000, targetX: -1000, targetY: -1000 };
+
+      window.addEventListener('mousemove', (e) => {
+        mouse.targetX = e.clientX;
+        mouse.targetY = e.clientY;
+      });
+
+      function resize() {
+        width = liquidCanvas.width = window.innerWidth;
+        height = liquidCanvas.height = window.innerHeight;
+      }
+      window.addEventListener('resize', resize);
+      resize();
+
+      // Liquid Lava Blobs definition
+      const blobs = [
+        { x: width * 0.2, y: height * 0.3, baseR: 280, r: 280, vx: 0.5, vy: 0.3, phase: 0, speed: 0.012, color: 'rgba(255, 255, 255, 0.5)' },
+        { x: width * 0.75, y: height * 0.65, baseR: 320, r: 320, vx: -0.4, vy: -0.5, phase: 2, speed: 0.009, color: 'rgba(230, 235, 250, 0.4)' },
+        { x: width * 0.45, y: height * 0.8, baseR: 260, r: 260, vx: 0.3, vy: -0.4, phase: 4, speed: 0.015, color: 'rgba(255, 255, 255, 0.45)' },
+        { x: width * 0.85, y: height * 0.25, baseR: 230, r: 230, vx: -0.5, vy: 0.3, phase: 1, speed: 0.011, color: 'rgba(210, 220, 240, 0.35)' },
+        { x: width * 0.15, y: height * 0.75, baseR: 300, r: 300, vx: 0.4, vy: -0.2, phase: 3, speed: 0.008, color: 'rgba(245, 245, 255, 0.42)' }
+      ];
+
+      let time = 0;
+
+      function render() {
+        time += 0.015;
+
+        // Smooth mouse interpolation
+        mouse.x += (mouse.targetX - mouse.x) * 0.08;
+        mouse.y += (mouse.targetY - mouse.y) * 0.08;
+
+        // --- RENDER LIQUID LAVA LAMP BACKGROUND ---
+        lCtx.clearRect(0, 0, width, height);
+
+        blobs.forEach((blob, idx) => {
+          blob.phase += blob.speed;
+          
+          // Dynamic wave movement
+          blob.x += blob.vx + Math.sin(time * 0.8 + idx) * 0.8;
+          blob.y += blob.vy + Math.cos(time * 0.6 + idx * 1.5) * 0.8;
+
+          // Pulse radius
+          blob.r = blob.baseR + Math.sin(blob.phase) * 35;
+
+          // Mouse fluid push effect
+          const dx = mouse.x - blob.x;
+          const dy = mouse.y - blob.y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < 350) {
+            const force = (350 - dist) / 350;
+            blob.x -= (dx / dist) * force * 3;
+            blob.y -= (dy / dist) * force * 3;
+          }
+
+          // Bounce boundaries
+          if (blob.x < -150) { blob.x = -150; blob.vx *= -1; }
+          if (blob.x > width + 150) { blob.x = width + 150; blob.vx *= -1; }
+          if (blob.y < -150) { blob.y = -150; blob.vy *= -1; }
+          if (blob.y > height + 150) { blob.y = height + 150; blob.vy *= -1; }
+
+          // Render radial lava gradient blob
+          const grad = lCtx.createRadialGradient(
+            blob.x, blob.y, blob.r * 0.05,
+            blob.x, blob.y, blob.r
+          );
+          grad.addColorStop(0, blob.color);
+          grad.addColorStop(0.5, blob.color.replace(/[\d\.]+\)$/, '0.18)'));
+          grad.addColorStop(1, 'rgba(10, 10, 11, 0)');
+
+          lCtx.fillStyle = grad;
+          lCtx.beginPath();
+          lCtx.arc(blob.x, blob.y, blob.r, 0, Math.PI * 2);
+          lCtx.fill();
+        });
+
+        // Interactive mouse liquid light aura
+        if (mouse.x > 0) {
+          const mouseGrad = lCtx.createRadialGradient(
+            mouse.x, mouse.y, 10,
+            mouse.x, mouse.y, 240
+          );
+          mouseGrad.addColorStop(0, 'rgba(255, 255, 255, 0.45)');
+          mouseGrad.addColorStop(1, 'rgba(0, 0, 0, 0)');
+          lCtx.fillStyle = mouseGrad;
+          lCtx.beginPath();
+          lCtx.arc(mouse.x, mouse.y, 240, 0, Math.PI * 2);
+          lCtx.fill();
+        }
+
+        requestAnimationFrame(render);
+      }
+
+      render();
+    })();
+
+    // Portfolio Category Filter
+    function filterPortfolio(category) {
+      const cards = document.querySelectorAll('.port-card');
+      const filterBtns = document.querySelectorAll('.port-filter-btn');
+
+      filterBtns.forEach(btn => {
+        if (btn.getAttribute('data-filter') === category) {
+          btn.className = "port-filter-btn px-3 py-1 rounded-full text-xs font-mono bg-white text-black active";
+        } else {
+          btn.className = "port-filter-btn px-3 py-1 rounded-full text-xs font-mono bg-white/10 text-neutral-300 hover:bg-white/20";
+        }
+      });
+
+      cards.forEach(card => {
+        if (category === 'all' || card.getAttribute('data-category') === category) {
+          card.style.display = 'block';
+          setTimeout(() => { card.style.opacity = '1'; }, 50);
+        } else {
+          card.style.opacity = '0';
+          setTimeout(() => { card.style.display = 'none'; }, 200);
+        }
+      });
+    }
+
+    // Modal Control Functions
+    function openProjectModal(title, category, imgSrc, desc) {
+      document.getElementById('modalTitle').innerText = title;
+      document.getElementById('modalCategory').innerText = category;
+      document.getElementById('modalImage').src = imgSrc;
+      document.getElementById('modalDesc').innerText = desc;
+      document.getElementById('projectModal').classList.remove('hidden');
+    }
+
+    function closeProjectModal() {
+      document.getElementById('projectModal').classList.add('hidden');
+    }
+
+    function openContactModal() {
+      document.getElementById('contactModal').classList.remove('hidden');
+    }
+
+    function closeContactModal() {
+      document.getElementById('contactModal').classList.add('hidden');
+    }
+
+    function showToast(message) {
+      const toast = document.createElement('div');
+      toast.className = 'fixed bottom-8 right-8 z-50 glass-panel px-6 py-4 rounded-2xl border border-white/30 text-white font-mono text-xs shadow-2xl flex items-center gap-3 animate-bounce';
+      toast.innerHTML = `<i class="fa-solid fa-circle-check text-emerald-400 text-base"></i><span>${message}</span>`;
+      document.body.appendChild(toast);
+      
+      setTimeout(() => { toast.remove(); }, 3500);
+    }
+
+    function handleContactSubmit(event) {
+      event.preventDefault();
+      closeContactModal();
+      showToast('¡Mensaje enviado con éxito! Me pondré en contacto pronto.');
+    }
+
+    function downloadCV() {
+      showToast('Descargando Marcus_CV_2026.pdf...');
+    }
+  </script>
+</body>
+</html>
