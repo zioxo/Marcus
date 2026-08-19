@@ -135,28 +135,34 @@
       <!-- Main Brand & Action Header -->
       <div
         class="glass-panel rounded-2xl px-5 py-3 flex items-center justify-between shadow-2xl border border-white/15 backdrop-blur-xl">
-        <!-- Logo Badge -->
-        <a href="#about-sec" class="flex items-center gap-3 group">
+        <!-- Logo Badge & Profile Card Trigger -->
+        <div class="flex items-center gap-3 group">
 
-          <div
-            class="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center border border-white/20 group-hover:bg-white transition-all overflow-hidden">
+          <button onclick="openProfileModal()" title="Ver tarjeta de perfil"
+            class="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center border border-white/20 hover:border-white/60 hover:scale-105 transition-all overflow-hidden cursor-pointer relative group/avatar shadow-lg">
 
             <img src="https://i.postimg.cc/595HKR58/r.png" alt="Logo Zeytox" class="w-full h-full object-cover">
 
-          </div>
+            <div
+              class="absolute inset-0 bg-black/40 opacity-0 group-hover/avatar:opacity-100 transition-opacity flex items-center justify-center">
+              <i class="fa-solid fa-expand text-white text-xs"></i>
+            </div>
 
-          <div>
+          </button>
+
+          <a href="#about-sec" class="group/name">
             <h1 class="text-[10px] font-mono tracking-widest text-neutral-400 uppercase">
               Interactive CV
             </h1>
 
-            <p class="text-xs font-bold tracking-tight flex items-center gap-1.5">
+            <p
+              class="text-xs font-bold tracking-tight flex items-center gap-1.5 group-hover/name:text-white transition-colors">
               <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
               Marcus Velasquez
             </p>
-          </div>
+          </a>
 
-        </a>
+        </div>
 
         <!-- Right Action Controls -->
         <div class="flex items-center gap-2">
@@ -478,7 +484,7 @@
                 <path
                   d="M22 7h-7v-2h7v2zm1.726 10c-.442 1.297-2.029 3-4.813 3-3.102 0-5.002-2.083-5.002-5.111 0-3.327 2.05-5.176 4.885-5.176 3.09 0 4.606 2.148 4.385 5.092h-6.602c.088 1.439.99 2.221 2.385 2.221 1.082 0 1.905-.445 2.221-1.125h2.541zm-4.908-4.221c-.08-.853-.7-1.577-1.782-1.577-1.002 0-1.722.714-1.846 1.577h3.628zm-11.411 7.221h-7.407v-14h7.525c2.459 0 4.303.681 4.303 3.327 0 1.547-.837 2.502-1.956 2.94 1.578.431 2.404 1.737 2.404 3.486 0 2.971-2.28 4.247-4.869 4.247zm-4.507-8.528h2.09c1.082 0 1.846-.381 1.846-1.393 0-.962-.764-1.353-1.846-1.353h-2.09v2.746zm0 5.867h2.381c1.238 0 2.093-.42 2.093-1.529 0-1.112-.855-1.529-2.093-1.529h-2.381v3.058z" />
               </svg>
-              <span>Ver Todos los proyectos</span>
+              <span>Ver todos los proyectos</span>
               <i
                 class="fa-solid fa-arrow-up-right-from-square text-[9px] text-neutral-500 group-hover:text-white transition-colors"></i>
             </a>
@@ -627,6 +633,124 @@
   </div>
 
   <!-- MODAL: PROJECT DETAIL -->
+  <!-- Profile Card Modal Overlay -->
+  <div id="profileModal" onclick="closeProfileModalOnBackdrop(event)"
+    class="fixed inset-0 bg-black/80 backdrop-blur-md z-50 hidden flex items-center justify-center p-4 transition-all duration-300">
+    <div
+      class="glass-panel border border-white/20 rounded-3xl max-w-md w-full p-6 sm:p-8 relative space-y-6 text-center shadow-2xl overflow-hidden">
+
+      <!-- Close Button -->
+      <button onclick="closeProfileModal()"
+        class="absolute top-5 right-5 w-8 h-8 rounded-full bg-white/10 hover:bg-white text-white hover:text-black transition-all flex items-center justify-center z-10">
+        <i class="fa-solid fa-xmark text-sm"></i>
+      </button>
+
+      <!-- Decorative Ambient Blur -->
+      <div class="absolute -top-16 -left-16 w-40 h-40 bg-white/15 rounded-full blur-3xl pointer-events-none"></div>
+
+      <!-- Profile Avatar Container (Enlarged) -->
+      <div class="relative w-32 h-32 sm:w-40 sm:h-40 mx-auto mt-2">
+        <div
+          class="w-full h-full rounded-3xl overflow-hidden border-2 border-white/30 p-1.5 bg-white/10 shadow-2xl relative group">
+          <img src="https://i.postimg.cc/595HKR58/r.png" alt="Marcus Velasquez"
+            class="w-full h-full object-cover rounded-2xl group-hover:scale-105 transition-transform duration-500">
+        </div>
+        <span
+          class="absolute bottom-1 right-1 px-2 py-0.5 rounded-full bg-emerald-500/90 border border-emerald-300 text-white font-mono text-[9px] flex items-center gap-1 shadow-md"
+          title="Disponible para proyectos">
+          <span class="w-1.5 h-1.5 rounded-full bg-white animate-ping"></span>
+          Online
+        </span>
+      </div>
+
+      <!-- Header Info & Bio -->
+      <div class="space-y-2">
+        <span
+          class="px-3 py-1 rounded-full bg-white/10 text-white font-mono text-[10px] uppercase tracking-widest border border-white/20 inline-block">
+          Interactive CV • Zeytox
+        </span>
+        <h3 class="text-2xl sm:text-3xl font-bold text-white tracking-tight">Marcus Velasquez</h3>
+        <p class="text-xs font-mono text-neutral-400">Director de Arte & Diseñador Multimedia</p>
+      </div>
+
+      <p class="text-xs text-neutral-300 leading-relaxed font-sans px-2">
+        Especializado en dirección de arte, edición de video, animación multimedia y desarrollo de identidades visuales
+        con 6+ años de experiencia laboral.
+      </p>
+
+      <!-- Social Media Links -->
+      <div class="pt-4 border-t border-white/10 space-y-3">
+        <span
+          class="text-[10px] font-mono text-neutral-400 uppercase tracking-widest flex items-center justify-center gap-1.5">
+          <i class="fa-solid fa-share-nodes text-xs text-white/70"></i>
+          Redes Sociales
+        </span>
+
+        <div class="grid grid-cols-2 gap-2.5">
+          <!-- LinkedIn -->
+          <a href="https://www.linkedin.com/in/zeytox/" target="_blank" rel="noopener noreferrer"
+            class="flex items-center justify-center gap-2 px-3.5 py-2.5 rounded-xl bg-white/5 hover:bg-white/15 border border-white/10 hover:border-white/30 text-xs font-mono text-white transition-all duration-300 group shadow-md hover:-translate-y-0.5">
+            <svg class="w-4 h-4 fill-current text-neutral-300 group-hover:text-blue-400 transition-colors"
+              viewBox="0 0 24 24">
+              <path
+                d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z" />
+            </svg>
+            <span>LinkedIn</span>
+            <i
+              class="fa-solid fa-arrow-up-right-from-square text-[9px] text-neutral-500 group-hover:text-white transition-colors"></i>
+          </a>
+
+          <!-- Behance -->
+          <a href="https://www.behance.net/ZeyToX" target="_blank" rel="noopener noreferrer"
+            class="flex items-center justify-center gap-2 px-3.5 py-2.5 rounded-xl bg-white/5 hover:bg-white/15 border border-white/10 hover:border-white/30 text-xs font-mono text-white transition-all duration-300 group shadow-md hover:-translate-y-0.5">
+            <svg class="w-4 h-4 fill-current text-neutral-300 group-hover:text-blue-500 transition-colors"
+              viewBox="0 0 24 24">
+              <path
+                d="M22 7h-7v-2h7v2zm1.726 10c-.442 1.297-2.029 3-4.813 3-3.102 0-5.002-2.083-5.002-5.111 0-3.327 2.05-5.176 4.885-5.176 3.09 0 4.606 2.148 4.385 5.092h-6.602c.088 1.439.99 2.221 2.385 2.221 1.082 0 1.905-.445 2.221-1.125h2.541zm-4.908-4.221c-.08-.853-.7-1.577-1.782-1.577-1.002 0-1.722.714-1.846 1.577h3.628zm-11.411 7.221h-7.407v-14h7.525c2.459 0 4.303.681 4.303 3.327 0 1.547-.837 2.502-1.956 2.94 1.578.431 2.404 1.737 2.404 3.486 0 2.971-2.28 4.247-4.869 4.247zm-4.507-8.528h2.09c1.082 0 1.846-.381 1.846-1.393 0-.962-.764-1.353-1.846-1.353h-2.09v2.746zm0 5.867h2.381c1.238 0 2.093-.42 2.093-1.529 0-1.112-.855-1.529-2.093-1.529h-2.381v3.058z" />
+            </svg>
+            <span>Behance</span>
+            <i
+              class="fa-solid fa-arrow-up-right-from-square text-[9px] text-neutral-500 group-hover:text-white transition-colors"></i>
+          </a>
+
+          <!-- Instagram -->
+          <a href="https://www.instagram.com/zeytox/" target="_blank" rel="noopener noreferrer"
+            class="flex items-center justify-center gap-2 px-3.5 py-2.5 rounded-xl bg-white/5 hover:bg-white/15 border border-white/10 hover:border-white/30 text-xs font-mono text-white transition-all duration-300 group shadow-md hover:-translate-y-0.5">
+            <svg class="w-4 h-4 fill-current text-neutral-300 group-hover:text-pink-400 transition-colors"
+              viewBox="0 0 24 24">
+              <path
+                d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+            </svg>
+            <span>Instagram</span>
+            <i
+              class="fa-solid fa-arrow-up-right-from-square text-[9px] text-neutral-500 group-hover:text-white transition-colors"></i>
+          </a>
+
+          <!-- WhatsApp -->
+          <a href="https://wa.me/51902574571" target="_blank" rel="noopener noreferrer"
+            class="flex items-center justify-center gap-2 px-3.5 py-2.5 rounded-xl bg-white/5 hover:bg-white/15 border border-white/10 hover:border-white/30 text-xs font-mono text-white transition-all duration-300 group shadow-md hover:-translate-y-0.5">
+            <svg class="w-4 h-4 fill-current text-neutral-300 group-hover:text-emerald-400 transition-colors"
+              viewBox="0 0 24 24">
+              <path
+                d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.07-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.572-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z" />
+            </svg>
+            <span>WhatsApp</span>
+            <i
+              class="fa-solid fa-arrow-up-right-from-square text-[9px] text-neutral-500 group-hover:text-white transition-colors"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- Action Footer -->
+      <div class="pt-2 flex justify-center gap-3">
+        <button onclick="closeProfileModal()"
+          class="w-full py-2.5 rounded-xl glass-panel text-xs font-mono text-neutral-300 hover:text-white hover:bg-white/10 transition-all border border-white/10">
+          Cerrar
+        </button>
+      </div>
+    </div>
+  </div>
+
   <div id="projectModal"
     class="fixed inset-0 bg-black/80 backdrop-blur-md z-50 hidden flex items-center justify-center p-4">
     <div
@@ -791,6 +915,37 @@
       });
     }
 
+    // Profile Card Modal Control Functions
+    function openProfileModal() {
+      const modal = document.getElementById('profileModal');
+      if (modal) {
+        modal.classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+      }
+    }
+
+    function closeProfileModal() {
+      const modal = document.getElementById('profileModal');
+      if (modal) {
+        modal.classList.add('hidden');
+        document.body.style.overflow = '';
+      }
+    }
+
+    function closeProfileModalOnBackdrop(e) {
+      if (e.target.id === 'profileModal') {
+        closeProfileModal();
+      }
+    }
+
+    // Close modals on Escape key
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        closeProfileModal();
+        closeProjectModal();
+      }
+    });
+
     // Modal Control Functions
     function openProjectModal(title, category, imgSrc, desc, projectUrl = 'https://behance.net') {
       document.getElementById('modalTitle').innerText = title;
@@ -804,10 +959,12 @@
       }
 
       document.getElementById('projectModal').classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
     }
 
     function closeProjectModal() {
       document.getElementById('projectModal').classList.add('hidden');
+      document.body.style.overflow = '';
     }
 
 
